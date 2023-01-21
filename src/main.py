@@ -1,58 +1,26 @@
-import tkinter as tk
-from tkinter import ttk
-from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
 import os
-
-
-# create the root window
-root = tk.Tk()
-root.title('Selecione os arquivos html')
-root.resizable(False, False)
-root.geometry('300x150')
-
-files = None
-
-def select_files():
-    filetypes = (
-        ('html files', '*.html'),
-        ('All files', '*.*')
-    )
-
-    filenames = fd.askopenfilenames(
-        title='Open files',
-        initialdir=os.getcwd(),
-        filetypes=filetypes)
-
-    files = filenames
-    # showinfo(
-    #     title='Selected Files',
-    #     message=filenames
-    # )
-
-
-# open button
-open_button = ttk.Button(
-    root,
-    text='Open Files',
-    command=select_files
-)
-print(files)
-
-open_button.pack(expand=True)
-
-root.mainloop()
-
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, Label
+import FillExcel
 
-root= tk.Tk()
+root = tk.Tk()
+root.title("Selecione os arquivos HTML")
+root.geometry("300x150")
+root.resizable(False, False)
 
-def openFile():
-    files = filedialog.askopenfilenames(parent=root, title='Choose a file')
-    print (files)
+label = Label(root, text="TESTE TESTE TESTE")
+label.pack(anchor='n')
 
-button = tk.Button(root, text="Open File", command=openFile)
-button.pack()
+
+def open_file():
+    files = filedialog.askopenfilenames(parent=root, title='Choose a file', filetypes=[("HTML Files", "*.html")],
+                                        initialdir=os.getcwd())
+    FillExcel.create_sheets(files)
+    label2 = Label(root, text="teste arquivos excel")
+    label2.place(relx=0.5, rely=0.9, anchor='s')
+
+
+button = tk.Button(root, text="Selecione os arquivos", command=open_file, font=("Inter", 12))
+button.place(relx=0.5, rely=0.5, anchor='center')
 
 root.mainloop()
