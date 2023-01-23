@@ -1,5 +1,5 @@
 from openpyxl import load_workbook
-import pandas as pd
+from pandas import read_html
 
 
 class CreateExcel:
@@ -9,7 +9,7 @@ class CreateExcel:
 
     def read_attributes_html(self, html_file):
         player_attributes = dict()
-        tables = pd.read_html(html_file, encoding='UTF-8')
+        tables = read_html(html_file, encoding='UTF-8')
         table_tecnicos = tables[0]
         dict_tecnicos = {
             'Cabeceamento': int(table_tecnicos.loc[table_tecnicos["Técnicos"] == "Cabeceamento", "Unnamed: 2"]),
