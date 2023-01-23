@@ -106,10 +106,10 @@ class CreateExcel:
         wb.save(f'{new_name}.xlsx')
 
 
-def create_sheets(files):
+def create_sheets(template, files):
     ce = CreateExcel()
     for file in files:
         attributes = ce.read_attributes_html(file)
         filename = file.rsplit('/')
         new_filename = filename[-1].replace('.html', '')
-        ce.fill_excel('C:\Robot\AutoFillAttributes\Analise_de_Atributos_-_TaticaMente.xlsx', new_filename, attributes)
+        ce.fill_excel(template, new_filename, attributes)
