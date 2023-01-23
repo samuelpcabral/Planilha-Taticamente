@@ -113,3 +113,4 @@ def create_sheets(template, files):
         filename = file.rsplit('/')
         new_filename = filename[-1].replace('.html', '')
         ce.fill_excel(template, new_filename, attributes)
+    return str(len(files))

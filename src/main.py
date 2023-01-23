@@ -1,4 +1,4 @@
-import os
+from os import getcwd, listdir, path
 from tkinter import *
 from tkinter import filedialog, Label
 import FillExcel
@@ -7,22 +7,28 @@ root = Tk()
 
 
 class Funcs:
+    def __init__(self):
+        self.lb_gerados = None
+
     def open_files(self):
         files = filedialog.askopenfilenames(parent=root, title='Selecione os jogadores',
-                                            filetypes=[("HTML Files", "*.html")], initialdir=os.getcwd())
-        FillExcel.create_sheets(self.input_template.get(), files)
+                                            filetypes=[("HTML Files", "*.html")], initialdir=getcwd())
+        total = FillExcel.create_sheets(self.input_template.get(), files)
+        new_label = 'Total de planilhas geradas : ' + total
+        self.lb_gerados = Label(self.frame, text=new_label, bg='#dfe3ee', fg='#1f0930')
+        self.lb_gerados.place(relx=0.05, rely=0.8)
 
     def open_excel(self):
         file = filedialog.askopenfilenames(parent=root, title='Selecione a planilha',
-                                           filetypes=[("Excel File", "*.xlsx")], initialdir=os.getcwd())
+                                           filetypes=[("Excel File", "*.xlsx")], initialdir=getcwd())
         self.input_template.delete(0, "end")
         self.input_template.insert(0, file)
 
     def check_template_same_folder(self):
-        files = os.listdir(os.getcwd())
+        files = listdir(getcwd())
         for file in files:
             if file == "Analise_de_Atributos_-_TaticaMente.xlsx":
-                self.input_template.insert(0, os.path.abspath(os.path.join(os.getcwd(), file)))
+                self.input_template.insert(0, path.abspath(path.join(getcwd(), file)))
 
 
 class Application(Funcs):
@@ -40,7 +46,7 @@ class Application(Funcs):
         root.mainloop()
 
     def screen(self):
-        self.root.title("Cadastro de Clientes")
+        self.root.title("Gerador de planilhas Taticamente")
         self.root.configure(background='#2e0d46')
         self.root.geometry("700x250")
         self.root.resizable(False, False)
