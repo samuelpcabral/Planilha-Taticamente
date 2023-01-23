@@ -1,6 +1,6 @@
 from os import getcwd, listdir, path
 from tkinter import *
-from tkinter import filedialog, Label
+from tkinter import filedialog, Label, messagebox
 import FillExcel
 
 root = Tk()
@@ -13,10 +13,13 @@ class Funcs:
     def open_files(self):
         files = filedialog.askopenfilenames(parent=root, title='Selecione os jogadores',
                                             filetypes=[("HTML Files", "*.html")], initialdir=getcwd())
-        total = FillExcel.create_sheets(self.input_template.get(), files)
-        new_label = 'Total de planilhas geradas : ' + total
-        self.lb_gerados = Label(self.frame, text=new_label, bg='#dfe3ee', fg='#1f0930')
-        self.lb_gerados.place(relx=0.05, rely=0.8)
+        try:
+            total = FillExcel.create_sheets(self.input_template.get(), files)
+            new_label = 'Total de planilhas geradas : ' + total
+            self.lb_gerados = Label(self.frame, text=new_label, bg='#dfe3ee', fg='#1f0930')
+            self.lb_gerados.place(relx=0.05, rely=0.8)
+        except Exception as error_message:
+            messagebox.showerror("ERRO", error_message)
 
     def open_excel(self):
         file = filedialog.askopenfilenames(parent=root, title='Selecione a planilha',
@@ -33,6 +36,7 @@ class Funcs:
 
 class Application(Funcs):
     def __init__(self):
+        super().__init__()
         self.lb_text = None
         self.bt_selecionar = None
         self.bt_abrir = None
