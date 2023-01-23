@@ -11,3 +11,4 @@ em caso de dúvida deixei todos os arquivos que o python utiliza para criar um a
 e claro todo o código é open-source.
 
 ## Gerar executável
+pyinstaller --noconsole --icon=icon.ico -n gerador_planilhas_taticamente -F .\main.py
