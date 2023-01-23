@@ -22,6 +22,8 @@ o arquivo se chama "gerador_planilhas_taticamente.exe"
 Como eu não tenho certificado para assinar o software, com certeza o windows vai perguntar se confia no executável e 
 se pode executar assim mesmo.
 
+Obs: Se a planilha do site taticamente estiver na mesma pasta do arquivo .exe, ela será automaticamente carregada.
+
 ## Dev
 
 ### Pra quem quiser colaborar:
