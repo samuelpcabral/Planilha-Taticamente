@@ -26,7 +26,7 @@ Obs: Se a planilha do site Taticamente estiver na mesma pasta do arquivo .exe, e
 
 ## Dev
 
-### Pra quem quiser colaborar:
+### Quem quiser colaborar:
 
 Package list:
 ```commandline
@@ -41,4 +41,4 @@ pyinstaller --noconsole --icon=icon.ico -n gerador_planilhas_taticamente -F .\ma
 
 To-do:
 - [ ] Assinar software
-- [ ] diminuir o tamanho do executável
+- [ ] Diminuir o tamanho do executável
